@@ -1,4 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/neo')
+require 'pry'
 
 class AboutInheritance < Neo::Koan
   class Dog
@@ -24,23 +25,25 @@ class AboutInheritance < Neo::Koan
   end
 
   def test_subclasses_have_the_parent_as_an_ancestor
-    assert_equal __, Chihuahua.ancestors.include?(Dog)
+    assert_equal true, Chihuahua.ancestors.include?(Dog)
   end
 
   def test_all_classes_ultimately_inherit_from_object
-    assert_equal __, Chihuahua.ancestors.include?(Object)
+    assert_equal true, Chihuahua.ancestors.include?(Object)
   end
 
   def test_subclasses_inherit_behavior_from_parent_class
     chico = Chihuahua.new("Chico")
-    assert_equal __, chico.name
+    assert_equal "Chico", chico.name
   end
 
   def test_subclasses_add_new_behavior
     chico = Chihuahua.new("Chico")
-    assert_equal __, chico.wag
+    assert_equal :happy, chico.wag
 
-    assert_raise(___) do
+        # binding.pry
+
+    assert_raise("undefined method") do
       fido = Dog.new("Fido")
       fido.wag
     end
